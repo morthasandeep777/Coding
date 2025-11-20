@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Object Example</title>
+</head>
+<body>
+
+    <h1 id="heading">Hello, JavaScript!</h1>
+    <button onclick="changeContent()">Click Me</button>
+
+    <script>
+        function changeContent() {
+            document.getElementById("heading").innerHTML = "Text Changed Using Document Object!";
+            document.body.style.backgroundColor = "lightblue"; // Changes background color
+        }
+    </script>
+
+</body>
+</html>

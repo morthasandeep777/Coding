@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Eligibility</title>
+</head>
+<body>
+
+    <h2>Voter Information</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Eligibility</th>
+        </tr>
+        <tr>
+            <td id="voterName"></td>
+            <td id="voterAge"></td>
+            <td id="voterStatus"></td>
+        </tr>
+    </table>
+
+    <script>
+        // Get voter details
+        let name = prompt("Enter your name:");
+        let age = prompt("Enter your age:");
+
+        // Determine eligibility
+        let status = (age >= 18) ? "Eligible to Vote" : "Not Eligible to Vote";
+
+        // Display in table
+        document.getElementById("voterName").innerText = name;
+        document.getElementById("voterAge").innerText = age;
+        document.getElementById("voterStatus").innerText = status;
+    </script>
+
+</body>
+</html>

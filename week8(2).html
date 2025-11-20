@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>String Object Example</title>
+</head>
+<body>
+
+    <h2>String Object Example</h2>
+    <p id="stringOutput"></p>
+
+    <script>
+        let text = "Hello, JavaScript!";
+        let length = text.length; // Get string length
+        let upperCaseText = text.toUpperCase(); // Convert to uppercase
+        let replacedText = text.replace("JavaScript", "World"); // Replace word
+
+        document.getElementById("stringOutput").innerHTML = 
+            `Length: ${length} <br> Upper Case: ${upperCaseText} <br> Replaced Text: ${replacedText}`;
+    </script>
+
+</body>
+</html>

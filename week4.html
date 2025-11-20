@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors Demo</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .internal-style {
+            color: blue;
+            font-size: 20px;
+        }
+        #unique-id {
+            background-color: yellow;
+            padding: 10px;
+        }
+        div > p {
+            color: green;
+        }
+        div + p {
+            font-weight: bold;
+        }
+        div ~ p {
+            text-decoration: underline;
+        }
+        a:hover {
+            color: red;
+        }
+        p::first-letter {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        [type="text"] {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: red;">Inline Style Example</h1>
+    <p class="internal-style">This is an internal style example.</p>
+    <p id="unique-id">This paragraph has an ID selector.</p>
+    <div>
+        <p>This paragraph is a child of div (Child Selector).</p>
+    </div>
+    <p>This paragraph follows a div (Adjacent Sibling Selector).</p>
+    <p>Another paragraph after div (General Sibling Selector).</p>
+    <a href="#">Hover over this link</a>
+    <p>Pseudo-element example with first letter styled.</p>
+    <input type="text" placeholder="Attribute Selector Example">
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Object Example</title>
+</head>
+<body>
+
+    <h2>Window Object Example</h2>
+    <button onclick="showWindowInfo()">Show Window Info</button>
+
+    <script>
+        function showWindowInfo() {
+            alert("Window Width: " + window.innerWidth + "\nWindow Height: " + window.innerHeight);
+            setTimeout(() => {
+                alert("This message appears after 3 seconds!");
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>

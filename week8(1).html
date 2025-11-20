@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Object Example</title>
+</head>
+<body>
+
+    <h2>Math Object Example</h2>
+    <p id="mathOutput"></p>
+
+    <script>
+        let num = 25;
+        let sqrt = Math.sqrt(num); // Square root
+        let randomNum = Math.random(); // Random number between 0 and 1
+        let roundNum = Math.round(4.7); // Rounds to the nearest integer
+
+        document.getElementById("mathOutput").innerHTML = 
+            `Square Root of 25: ${sqrt} <br> Random Number: ${randomNum} <br> Rounded Value: ${roundNum}`;
+    </script>
+
+</body>
+</html>

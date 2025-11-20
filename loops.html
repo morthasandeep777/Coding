@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Print Numbers 1 to 10</title>
+</head>
+<body>
+
+  <h1>Printing Numbers 1 to 10</h1>
+
+  <div id="output"></div>
+
+  <script>
+    const outputDiv = document.getElementById('output');
+    let outputText = "";
+
+    // Using for loop
+    outputText += "<h2>Using for loop:</h2>";
+    for (let i = 1; i <= 10; i++) {
+      outputText += i + "<br>";
+    }
+
+    // Using while loop
+    outputText += "<h2>Using while loop:</h2>";
+    let j = 1;
+    while (j <= 10) {
+      outputText += j + "<br>";
+      j++;
+    }
+
+    // Using do-while loop
+    outputText += "<h2>Using do-while loop:</h2>";
+    let k = 1;
+    do {
+      outputText += k + "<br>";
+      k++;
+    } while (k <= 10);
+
+    outputDiv.innerHTML = outputText;
+  </script>
+
+</body>
+</html>

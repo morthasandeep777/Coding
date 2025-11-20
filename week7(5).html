@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Object Example</title>
+</head>
+<body>
+
+    <h2>Array Object Example</h2>
+    <button onclick="arrayOperations()">Perform Array Operations</button>
+
+    <p id="output"></p>
+
+    <script>
+        function arrayOperations() {
+            let fruits = ["Apple", "Banana", "Mango"];
+            fruits.push("Orange"); // Adds a new element
+            fruits.sort(); // Sorts the array
+
+            document.getElementById("output").innerHTML = "Fruits Array: " + fruits.join(", ");
+        }
+    </script>
+
+</body>
+</html>

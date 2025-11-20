@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Armstrong Checker</title>
+</head>
+<body>
+
+  <h1>Armstrong Checker</h1>
+
+  Enter a number: <input type="number" id="num">
+  <button onclick="check()">Check</button>
+
+  <p id="output"></p>
+
+  <script>
+    function isArmstrong(n) {
+      let str = n.toString();
+      let len = str.length;
+      let sum = 0;
+      for (let i = 0; i < len; i++) {
+        sum += Math.pow(parseInt(str[i]), len);
+      }
+      return sum === n;
+    }
+
+    function check() {
+      let num = parseInt(document.getElementById('num').value);
+      let res = document.getElementById('output');
+      if (isArmstrong(num)) {
+        res.textContent = num + " is Armstrong";
+      } else {
+        res.textContent = num + " is not Armstrong";
+      }
+    }
+  </script>
+
+</body>
+</html>

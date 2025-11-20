@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Internal and External JavaScript</title>
+  <script src="external.js"></script>
+</head>
+<body>
+
+  <h1>Internal and External JavaScript Example</h1>
+
+  <button onclick="internalFunction()">Click Internal</button>
+  <button onclick="externalFunction()">Click External</button>
+
+  <p id="output"></p>
+
+  <script>
+    function internalFunction() {
+      document.getElementById('output').textContent = 'Internal JavaScript button clicked!';
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Task Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: grey;
+    }
+  </style>
+</head>
+<body>
+  <div class="container bg-white p-4 rounded shadow-sm">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <img src="https://i.ibb.co/gT79Ljd/1stop-logo.png" alt="Logo" style="height: 50px;">
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#taskModal">Add Task</button>
+    </div>
+
+    <table class="table table-bordered text-center">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Task/Description</th>
+          <th>Responsible</th>
+          <th>ETA</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="taskTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="taskModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <form id="taskForm" class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Task</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label">Task/Description</label>
+            <textarea class="form-control" id="taskDesc" placeholder="Add your Task/Description" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Responsible</label>
+            <input type="text" class="form-control" id="taskPerson" placeholder="Add the Responsible Person's Name" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">ETA</label>
+            <input type="datetime-local" class="form-control" id="taskETA" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Add Task</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let tasks = JSON.parse(localStorage.getItem("taskList")) || [];
+
+    function renderTasks() {
+      const tbody = document.getElementById("taskTableBody");
+      tbody.innerHTML = "";
+      tasks.forEach((task, index) => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${index + 1}</td>
+            <td class="${task.completed ? 'completed' : ''}">${task.desc}</td>
+            <td>${task.person}</td>
+            <td>${task.eta}</td>
+            <td>
+              <button class="btn btn-sm btn-success me-1" onclick="markComplete(${index})">✔</button>
+              <button class="btn btn-sm btn-outline-secondary" onclick="editTask(${index})">✏️</button>
+            </td>
+          </tr>
+        `;
+      });
+    }
+
+    function markComplete(index) {
+      tasks[index].completed = !tasks[index].completed;
+      saveTasks();
+    }
+
+    function editTask(index) {
+      const task = tasks[index];
+      document.getElementById("taskDesc").value = task.desc;
+      document.getElementById("taskPerson").value = task.person;
+      document.getElementById("taskETA").value = task.eta;
+      tasks.splice(index, 1); // Remove to re-add after editing
+      saveTasks();
+      const modal = new bootstrap.Modal(document.getElementById('taskModal'));
+      modal.show();
+    }
+
+    function saveTasks() {
+      localStorage.setItem("taskList", JSON.stringify(tasks));
+      renderTasks();
+    }
+
+    document.getElementById("taskForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const desc = document.getElementById("taskDesc").value;
+      const person = document.getElementById("taskPerson").value;
+      const eta = document.getElementById("taskETA").value;
+      tasks.push({ desc, person, eta, completed: false });
+      saveTasks();
+      this.reset();
+      const modal = bootstrap.Modal.getInstance(document.getElementById('taskModal'));
+      modal.hide();
+    });
+
+    renderTasks();
+  </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Expense Tracker</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Times New Roman', Times, serif; }
+    .container { margin-top: 40px; }
+    .expense-table th, .expense-table td { text-align: center; }
+    .logo { width: 50px; height: 50px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo" class="logo">
+      <h4 class="text-success">Total Spent <span id="totalAmount">0</span></h4>
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#expenseModal">Add Expense</button>
+    </div>
+
+    <table class="table table-bordered expense-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Spent Amount</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="expenseTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Expense Modal -->
+  <div class="modal fade" id="expenseModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Expense</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="expenseForm">
+            <div class="mb-3">
+              <label for="desc" class="form-label">Description</label>
+              <textarea class="form-control" id="desc" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="date" class="form-label">Expenditure Date</label>
+              <input type="date" class="form-control" id="date" required>
+            </div>
+            <div class="mb-3">
+              <label for="amount" class="form-label">Spent Amount</label>
+              <input type="number" class="form-control" id="amount" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary">Add Expense</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
+    function updateUI() {
+      let tableBody = $('#expenseTableBody');
+      tableBody.html('');
+      let total = 0;
+      expenses.forEach((item, index) => {
+        total += parseFloat(item.amount);
+        tableBody.append(`
+          <tr>
+            <td>${index + 1}</td>
+            <td>${item.description}</td>
+            <td>${item.date}</td>
+            <td>${item.amount}</td>
+            <td><button class="btn btn-sm btn-danger" onclick="deleteExpense(${index})">Delete</button></td>
+          </tr>
+        `);
+      });
+      $('#totalAmount').text(total);
+    }
+
+    function deleteExpense(index) {
+      expenses.splice(index, 1);
+      localStorage.setItem('expenses', JSON.stringify(expenses));
+      updateUI();
+    }
+
+    $('#expenseForm').on('submit', function(e) {
+      e.preventDefault();
+      let desc = $('#desc').val();
+      let date = $('#date').val();
+      let amount = $('#amount').val();
+      expenses.push({ description: desc, date: date, amount: amount });
+      localStorage.setItem('expenses', JSON.stringify(expenses));
+      $('#expenseModal').modal('hide');
+      this.reset();
+      updateUI();
+    });
+
+    $(document).ready(function() {
+      updateUI();
+    });
+  </script>
+</body>
+</html>

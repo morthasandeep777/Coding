@@ -1,0 +1,15 @@
+<html>
+
+
+write a html program which covers elements like html title,head,body,pre tag,ptag with the alignment of centre
+headings h3,h4,h5
+
+write a html program which covers ordered list & un ordered list
+
+write a html program to build a timetable using table tags
+
+write a html program to implement login form using form tags
+
+write a html program to implement registration form including 1st name,middle name,last name,email id,ph no.,gender,age,password.reenter password,adress,select the list of companies,submit button,
+
+write a html program to redirect a google page or website  using anchor tag.

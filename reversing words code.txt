@@ -1,0 +1,15 @@
+def reverse_lines_in_file(file_name):
+    try:
+        with open(file_name, 'r') as file:
+            lines = file.readlines()
+        
+        print("Reversed lines:")
+        for line in lines:
+            print(line.strip()[::-1])  # Strip removes newline; [::-1] reverses the string
+    except FileNotFoundError:
+        print(f"Error: File '{file_name}' not found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
+input_file = "reverse samp.txt"  
+reverse_lines_in_file(input_file)

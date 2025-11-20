@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taking Input in JavaScript</title>
+</head>
+<body>
+
+    <h2>Enter Your Name:</h2>
+    <input type="text" id="nameInput">
+    <button onclick="getName()">Submit</button>
+
+    <script>
+        // 1. Prompt() Method
+        let userInput = prompt("Enter your name:");
+        console.log("Prompt Input:", userInput);
+
+        // 2. Getting input from an HTML field
+        function getName() {
+            let name = document.getElementById("nameInput").value;
+            alert("You entered: " + name);
+        }
+
+        // 3. Confirm Box
+        let confirmation = confirm("Do you want to continue?");
+        console.log("User Confirmation:", confirmation);
+    </script>
+
+</body>
+</html>
